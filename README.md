@@ -16,7 +16,7 @@ La arquitectura del sistema **Feed-Link** se basa en una **FPGA Altera Cyclone I
 
 En la **Figura 1** se presenta el diagrama de bloques general del sistema, donde se observan los principales módulos de sensado, actuación, potencia y comunicación que conforman el dispensador automático de alimento y agua para mascotas.
 
-Figura 1: Diagrama de bloques general del sistema
+### Figura 1: Diagrama de bloques general del sistema
 ![Figura 1](FEED5.png) 
 
 ---
@@ -90,7 +90,52 @@ Estos resultados evidencian que el diseño es eficiente en términos de recursos
 
 ## Diagramas de la arquitectura
 
-HOLA
+En esta sección se presentan los diagramas de arquitectura del sistema **Feed-Link**, generados a partir del diseño modular implementado en la FPGA **Altera Cyclone IV**. Los diagramas muestran la interconexión entre los módulos de comunicación, procesamiento de tiempo, sensado, lógica de control, actuación e interfaz de usuario, evidenciando el enfoque jerárquico y modular del diseño.
+
+---
+
+### Figura 2. Diagrama general de arquitectura del sistema Feed-Link
+![Figura 2](FEED6.jpeg)
+
+La Figura 6 presenta una vista general de la arquitectura del sistema, donde se observa la FPGA como núcleo central de procesamiento. En este diagrama se integran los principales subsistemas: recepción de datos por UART, procesamiento de tiempo (RTC), módulos de sensado, lógica de alarmas y control, así como las salidas hacia los actuadores y la interfaz de usuario.  
+El diseño evidencia una estructura modular que facilita la escalabilidad, el mantenimiento y la depuración del sistema.
+
+---
+
+### Figura 3. Subsistema de comunicación y gestión de tiempo
+![Figura 3](FEED7.jpeg)
+
+La Figura 7 detalla el subsistema encargado de la comunicación serial y la gestión del tiempo. El módulo **UART RX** recibe datos externos que son procesados por el bloque **time parser**, el cual extrae la información de horas, minutos y segundos.  
+Posteriormente, estos datos alimentan el módulo **RTC counter**, encargado de mantener el conteo de tiempo interno del sistema. De forma paralela, el bloque **multi alarm parser** permite gestionar múltiples horarios de activación, los cuales son utilizados por la lógica de alarmas para programar los eventos de dispensación.
+
+---
+
+### Figura 4. Subsistema de sensado y lógica de alarmas
+![Figura 4](FEED8.jpeg)
+
+En la Figura 8 se muestra el subsistema de sensado y la lógica de alarmas. Los sensores infrarrojos **TCRT5000**, asociados al almacenamiento y al plato, entregan señales digitales que son acondicionadas mediante módulos de **antirrebote (debounce)**.  
+Estas señales, junto con la información de tiempo proveniente del RTC, alimentan los módulos **alarm trigger**, los cuales evalúan condiciones temporales y de presencia para determinar cuándo activar los actuadores. Este enfoque permite combinar eventos programados con condiciones físicas del sistema.
+
+---
+
+### Figura 5. Subsistema de actuación e interfaz de usuario
+![Figura 5](FEED9.jpeg)
+
+La Figura 9 presenta el subsistema de actuación y visualización. En esta etapa, las señales de activación generadas por la lógica de control son utilizadas para accionar el **servomotor**, encargado de la dispensación de alimento sólido, y el **relé temporizado**, que controla la electroválvula de agua.  
+Adicionalmente, el módulo **LCD1602 controller** gestiona la comunicación con la pantalla LCD 16×2, permitiendo mostrar al usuario información relevante como estados del sistema, alertas y mensajes operativos. El sistema incluye también el controlador ultrasónico, encargado de generar y procesar las señales de medición del nivel de agua.
+
+---
+
+## Consideraciones de diseño
+
+La arquitectura presentada evidencia un diseño completamente modular, donde cada bloque cumple una función específica y se comunica mediante señales bien definidas. Esta estrategia permite:
+
+- Separación clara entre sensado, control y actuación.  
+- Procesamiento paralelo y determinista gracias a la implementación en hardware.  
+- Facilidad para ampliar el sistema, por ejemplo, agregando nuevas alarmas o sensores.  
+- Mejor depuración y validación durante las etapas de simulación y pruebas en FPGA.
+
+En conjunto, los diagramas reflejan una arquitectura robusta y escalable, adecuada para un sistema automático de dispensación basado en lógica digital.
 
 ## Simulaciones
 
@@ -105,8 +150,8 @@ Sistema automatizado para la dispensación de alimento y agua para mascotas, bas
 
 ## Vista general del prototipo
 
-### Figura 2. Proyecto Feed-Link – Vista tipo pájaro para el usuario
-![Figura 2](FEED1.jpeg)
+### Figura 6. Proyecto Feed-Link – Vista tipo pájaro para el usuario
+![Figura 6](FEED1.jpeg)
 
 En la parte superior del prototipo se encuentra la tapa en MDF donde se integra la interfaz principal para el usuario. En esta superficie solo es visible la pantalla LCD 16×2, embebida en un recorte rectangular que permite leer fácilmente los mensajes del sistema. A través de esta pantalla se muestran estados como **“AGUA: LLENAR”** o **“COMIDA: LLENAR”**, así como otras indicaciones de funcionamiento, de modo que el usuario pueda conocer rápidamente si es necesario recargar alguno de los depósitos o si se ha ejecutado una rutina de dispensación.  
 El resto de la electrónica queda oculta debajo de la tapa, lo que mejora la apariencia del dispositivo y protege los componentes.
@@ -115,8 +160,8 @@ El resto de la electrónica queda oculta debajo de la tapa, lo que mejora la apa
 
 ## Vista interna del sistema
 
-### Figura 3. Proyecto Feed-Link – Vista tipo pájaro interna
-![Figura 3](FEED2.jpeg)
+### Figura 7. Proyecto Feed-Link – Vista tipo pájaro interna
+![Figura7](FEED2.jpeg)
 
 Al retirar la tapa superior se observa la vista interna tipo “pájaro” del sistema, donde se aloja toda la electrónica de control. En el centro se encuentra la tarjeta **FPGA Altera Cyclone IV**, encargada de ejecutar la lógica digital del dispensador. A su alrededor se distribuyen las diferentes tarjetas y módulos: la pantalla LCD, el módulo de relé para la electroválvula, los módulos de conexión a los sensores **TCRT5000** y **HC-SR04**, la etapa de potencia para el servomotor y las tarjetas de prototipado donde se realizan las interconexiones necesarias.  
 También se aprecia el ruteo del cableado de señal y alimentación, así como la fuente encargada de suministrar energía al sistema.
@@ -125,8 +170,8 @@ También se aprecia el ruteo del cableado de señal y alimentación, así como l
 
 ## Módulo de almacenamiento
 
-### Figura 4. Proyecto Feed-Link – Almacenamiento
-![Figura 4](FEED4.jpeg)
+### Figura 8. Proyecto Feed-Link – Almacenamiento
+![Figura 8](FEED4.jpeg)
 
 El módulo de almacenamiento del proyecto **Feed-Link** está conformado por dos depósitos independientes, uno para concentrado y otro para agua, montados sobre una estructura en MDF de dos niveles. En la parte superior se ubican los recipientes principales, que funcionan como contenedores de reserva: a la izquierda se dispone el depósito de alimento sólido y a la derecha el depósito de agua. Ambos se conectan, mediante adaptaciones en plástico tipo botella, a los conductos inferiores por donde se realiza la dispensación hacia el plato de la mascota.
 
@@ -138,8 +183,8 @@ Por su parte, el depósito de agua se conecta en la parte inferior a la electrov
 
 ## Vista frontal del sistema
 
-### Figura 5. Proyecto Feed-Link – Vista frontal del depósito
-![Figura 5](FEED3.jpeg)
+### Figura 9. Proyecto Feed-Link – Vista frontal del depósito
+![Figura 9](FEED3.jpeg)
 
 En la vista frontal del prototipo del sistema **Feed-Link** se observa la estructura principal en MDF que soporta los módulos de almacenamiento y dispensación de alimento y agua. En la parte superior se encuentra la plataforma donde se fija la electrónica de control y el cableado que conecta la FPGA con los sensores y actuadores. Debajo de esta, se ubican los dos depósitos transparentes: el de la izquierda destinado al concentrado sólido y el de la derecha destinado al agua.
 
