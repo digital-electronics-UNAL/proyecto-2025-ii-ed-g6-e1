@@ -14,7 +14,6 @@
 # Documentación
 ## Descripción de la arquitectura
 
-## Arquitectura del sistema Feed-Link
 
 La arquitectura del sistema **Feed-Link** se basa en una **FPGA Altera Cyclone IV** como unidad de control central, encargada de recibir la información proveniente de los sensores, procesarla de acuerdo con la lógica de control implementada en hardware y generar las señales necesarias para accionar los actuadores y actualizar las interfaces de usuario.  
 
