@@ -3,9 +3,13 @@
 
 # Integrantes
 
+- **Darwin Julián Chaparro** – [dchaparrogi@unal.edu.co](mailto:dchaparrogi@unal.edu.co)
+- **Jhonathan Galeano** – [jhgaleanop@unal.edu.co](mailto:jhgaleanop@unal.edu.co)
+- **Sebastián Sánchez Mesa** – [ssanchezme@unal.edu.co](mailto:ssanchezme@unal.edu.co)
 
 # Nombre del proyecto
 
+##### FEED-LINK
 
 # Documentación
 ## Descripción de la arquitectura
@@ -97,7 +101,7 @@ En esta sección se presentan los diagramas de arquitectura del sistema **Feed-L
 ### Figura 2. Diagrama general de arquitectura del sistema Feed-Link
 ![Figura 2](FEED6.jpeg)
 
-La Figura 6 presenta una vista general de la arquitectura del sistema, donde se observa la FPGA como núcleo central de procesamiento. En este diagrama se integran los principales subsistemas: recepción de datos por UART, procesamiento de tiempo (RTC), módulos de sensado, lógica de alarmas y control, así como las salidas hacia los actuadores y la interfaz de usuario.  
+La Figura 2 presenta una vista general de la arquitectura del sistema, donde se observa la FPGA como núcleo central de procesamiento. En este diagrama se integran los principales subsistemas: recepción de datos por UART, procesamiento de tiempo (RTC), módulos de sensado, lógica de alarmas y control, así como las salidas hacia los actuadores y la interfaz de usuario.  
 El diseño evidencia una estructura modular que facilita la escalabilidad, el mantenimiento y la depuración del sistema.
 
 ---
@@ -105,7 +109,7 @@ El diseño evidencia una estructura modular que facilita la escalabilidad, el ma
 ### Figura 3. Subsistema de comunicación y gestión de tiempo
 ![Figura 3](FEED7.jpeg)
 
-La Figura 7 detalla el subsistema encargado de la comunicación serial y la gestión del tiempo. El módulo **UART RX** recibe datos externos que son procesados por el bloque **time parser**, el cual extrae la información de horas, minutos y segundos.  
+La Figura 3 detalla el subsistema encargado de la comunicación serial y la gestión del tiempo. El módulo **UART RX** recibe datos externos que son procesados por el bloque **time parser**, el cual extrae la información de horas, minutos y segundos.  
 Posteriormente, estos datos alimentan el módulo **RTC counter**, encargado de mantener el conteo de tiempo interno del sistema. De forma paralela, el bloque **multi alarm parser** permite gestionar múltiples horarios de activación, los cuales son utilizados por la lógica de alarmas para programar los eventos de dispensación.
 
 ---
@@ -113,7 +117,7 @@ Posteriormente, estos datos alimentan el módulo **RTC counter**, encargado de m
 ### Figura 4. Subsistema de sensado y lógica de alarmas
 ![Figura 4](FEED8.jpeg)
 
-En la Figura 8 se muestra el subsistema de sensado y la lógica de alarmas. Los sensores infrarrojos **TCRT5000**, asociados al almacenamiento y al plato, entregan señales digitales que son acondicionadas mediante módulos de **antirrebote (debounce)**.  
+En la Figura 4 se muestra el subsistema de sensado y la lógica de alarmas. Los sensores infrarrojos **TCRT5000**, asociados al almacenamiento y al plato, entregan señales digitales que son acondicionadas mediante módulos de **antirrebote (debounce)**.  
 Estas señales, junto con la información de tiempo proveniente del RTC, alimentan los módulos **alarm trigger**, los cuales evalúan condiciones temporales y de presencia para determinar cuándo activar los actuadores. Este enfoque permite combinar eventos programados con condiciones físicas del sistema.
 
 ---
@@ -121,7 +125,7 @@ Estas señales, junto con la información de tiempo proveniente del RTC, aliment
 ### Figura 5. Subsistema de actuación e interfaz de usuario
 ![Figura 5](FEED9.jpeg)
 
-La Figura 9 presenta el subsistema de actuación y visualización. En esta etapa, las señales de activación generadas por la lógica de control son utilizadas para accionar el **servomotor**, encargado de la dispensación de alimento sólido, y el **relé temporizado**, que controla la electroválvula de agua.  
+La Figura 5 presenta el subsistema de actuación y visualización. En esta etapa, las señales de activación generadas por la lógica de control son utilizadas para accionar el **servomotor**, encargado de la dispensación de alimento sólido, y el **relé temporizado**, que controla la electroválvula de agua.  
 Adicionalmente, el módulo **LCD1602 controller** gestiona la comunicación con la pantalla LCD 16×2, permitiendo mostrar al usuario información relevante como estados del sistema, alertas y mensajes operativos. El sistema incluye también el controlador ultrasónico, encargado de generar y procesar las señales de medición del nivel de agua.
 
 ---
