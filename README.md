@@ -16,8 +16,8 @@ La arquitectura del sistema **Feed-Link** se basa en una **FPGA Altera Cyclone I
 
 En la **Figura 1** se presenta el diagrama de bloques general del sistema, donde se observan los principales módulos de sensado, actuación, potencia y comunicación que conforman el dispensador automático de alimento y agua para mascotas.
 
-<!-- Figura 1: Diagrama de bloques general del sistema -->
-<!-- ![Figura 1](imagenes/figura_1_diagrama_bloques.png) -->
+Figura 1: Diagrama de bloques general del sistema
+![Figura 1](FEED5.png) 
 
 ---
 
@@ -90,6 +90,7 @@ Estos resultados evidencian que el diseño es eficiente en términos de recursos
 
 ## Diagramas de la arquitectura
 
+HOLA
 
 ## Simulaciones
 
@@ -105,7 +106,7 @@ Sistema automatizado para la dispensación de alimento y agua para mascotas, bas
 ## Vista general del prototipo
 
 ### Figura 2. Proyecto Feed-Link – Vista tipo pájaro para el usuario
-![Figura 2](imagenes/figura_2_vista_pajaro_usuario.png)
+![Figura 2](FEED1.jpeg)
 
 En la parte superior del prototipo se encuentra la tapa en MDF donde se integra la interfaz principal para el usuario. En esta superficie solo es visible la pantalla LCD 16×2, embebida en un recorte rectangular que permite leer fácilmente los mensajes del sistema. A través de esta pantalla se muestran estados como **“AGUA: LLENAR”** o **“COMIDA: LLENAR”**, así como otras indicaciones de funcionamiento, de modo que el usuario pueda conocer rápidamente si es necesario recargar alguno de los depósitos o si se ha ejecutado una rutina de dispensación.  
 El resto de la electrónica queda oculta debajo de la tapa, lo que mejora la apariencia del dispositivo y protege los componentes.
@@ -115,7 +116,7 @@ El resto de la electrónica queda oculta debajo de la tapa, lo que mejora la apa
 ## Vista interna del sistema
 
 ### Figura 3. Proyecto Feed-Link – Vista tipo pájaro interna
-![Figura 3](imagenes/figura_3_vista_pajaro_interna.png)
+![Figura 3](FEED2.jpeg)
 
 Al retirar la tapa superior se observa la vista interna tipo “pájaro” del sistema, donde se aloja toda la electrónica de control. En el centro se encuentra la tarjeta **FPGA Altera Cyclone IV**, encargada de ejecutar la lógica digital del dispensador. A su alrededor se distribuyen las diferentes tarjetas y módulos: la pantalla LCD, el módulo de relé para la electroválvula, los módulos de conexión a los sensores **TCRT5000** y **HC-SR04**, la etapa de potencia para el servomotor y las tarjetas de prototipado donde se realizan las interconexiones necesarias.  
 También se aprecia el ruteo del cableado de señal y alimentación, así como la fuente encargada de suministrar energía al sistema.
@@ -125,7 +126,7 @@ También se aprecia el ruteo del cableado de señal y alimentación, así como l
 ## Módulo de almacenamiento
 
 ### Figura 4. Proyecto Feed-Link – Almacenamiento
-![Figura 4](imagenes/figura_4_almacenamiento.png)
+![Figura 4](FEED4.jpeg)
 
 El módulo de almacenamiento del proyecto **Feed-Link** está conformado por dos depósitos independientes, uno para concentrado y otro para agua, montados sobre una estructura en MDF de dos niveles. En la parte superior se ubican los recipientes principales, que funcionan como contenedores de reserva: a la izquierda se dispone el depósito de alimento sólido y a la derecha el depósito de agua. Ambos se conectan, mediante adaptaciones en plástico tipo botella, a los conductos inferiores por donde se realiza la dispensación hacia el plato de la mascota.
 
@@ -138,7 +139,7 @@ Por su parte, el depósito de agua se conecta en la parte inferior a la electrov
 ## Vista frontal del sistema
 
 ### Figura 5. Proyecto Feed-Link – Vista frontal del depósito
-![Figura 5](imagenes/figura_5_vista_frontal.png)
+![Figura 5](FEED3.jpeg)
 
 En la vista frontal del prototipo del sistema **Feed-Link** se observa la estructura principal en MDF que soporta los módulos de almacenamiento y dispensación de alimento y agua. En la parte superior se encuentra la plataforma donde se fija la electrónica de control y el cableado que conecta la FPGA con los sensores y actuadores. Debajo de esta, se ubican los dos depósitos transparentes: el de la izquierda destinado al concentrado sólido y el de la derecha destinado al agua.
 
