@@ -1,0 +1,1099 @@
+$date
+	Sat Dec 13 01:57:57 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_top $end
+$var wire 1 ! trigger_o $end
+$var wire 1 " servo_out $end
+$var wire 1 # rw $end
+$var wire 1 $ rs $end
+$var wire 1 % relay_out $end
+$var wire 1 & enable $end
+$var wire 8 ' data_o [7:0] $end
+$var reg 1 ( clk $end
+$var reg 1 ) echo_i $end
+$var reg 1 * ir_bowl_pin $end
+$var reg 1 + ir_storage_pin $end
+$var reg 1 , rst $end
+$var reg 1 - rx $end
+$scope module dut $end
+$var wire 1 ( clk $end
+$var wire 1 ) echo_i $end
+$var wire 1 * ir_bowl_pin $end
+$var wire 1 + ir_storage_pin $end
+$var wire 1 . relay_trigger $end
+$var wire 1 , rst $end
+$var wire 1 - rx $end
+$var wire 1 / servo_control $end
+$var wire 1 ! trigger_o $end
+$var wire 1 0 synced $end
+$var wire 1 1 set3 $end
+$var wire 1 2 set2 $end
+$var wire 1 3 set1 $end
+$var wire 1 " servo_out $end
+$var wire 1 4 sensor_storage_raw $end
+$var wire 1 5 sensor_storage_clean $end
+$var wire 1 6 sensor_bowl_raw $end
+$var wire 1 7 sensor_bowl_clean $end
+$var wire 6 8 sec_rtc [5:0] $end
+$var wire 6 9 sec_p [5:0] $end
+$var wire 1 # rw $end
+$var wire 1 $ rs $end
+$var wire 1 % relay_out $end
+$var wire 1 : nivel_agua_okay $end
+$var wire 6 ; min_rtc [5:0] $end
+$var wire 6 < min_p [5:0] $end
+$var wire 5 = hour_rtc [4:0] $end
+$var wire 5 > hour_p [4:0] $end
+$var wire 1 & enable $end
+$var wire 32 ? echo_counter [31:0] $end
+$var wire 1 @ data_valid $end
+$var wire 8 A data_o [7:0] $end
+$var wire 8 B data [7:0] $end
+$var wire 6 C alarm_sec3 [5:0] $end
+$var wire 6 D alarm_sec2 [5:0] $end
+$var wire 6 E alarm_sec1 [5:0] $end
+$var wire 6 F alarm_min3 [5:0] $end
+$var wire 6 G alarm_min2 [5:0] $end
+$var wire 6 H alarm_min1 [5:0] $end
+$var wire 5 I alarm_hour3 [4:0] $end
+$var wire 5 J alarm_hour2 [4:0] $end
+$var wire 5 K alarm_hour1 [4:0] $end
+$var wire 1 L alarm_active3_servo $end
+$var wire 1 M alarm_active3_relay $end
+$var wire 1 N alarm_active2_servo $end
+$var wire 1 O alarm_active2_relay $end
+$var wire 1 P alarm_active1_servo $end
+$var wire 1 Q alarm_active1_relay $end
+$scope module alarm1_relay $end
+$var wire 1 ( clk $end
+$var wire 1 R rst $end
+$var wire 6 S sec_rtc [5:0] $end
+$var wire 6 T min_rtc [5:0] $end
+$var wire 5 U hour_rtc [4:0] $end
+$var wire 1 3 alarm_set $end
+$var wire 6 V alarm_sec_in [5:0] $end
+$var wire 6 W alarm_min_in [5:0] $end
+$var wire 5 X alarm_hour_in [4:0] $end
+$var reg 1 Q alarm_active $end
+$var reg 5 Y alarm_hour [4:0] $end
+$var reg 6 Z alarm_min [5:0] $end
+$var reg 6 [ alarm_sec [5:0] $end
+$var reg 6 \ prev_sec [5:0] $end
+$upscope $end
+$scope module alarm1_servo $end
+$var wire 1 ( clk $end
+$var wire 1 ] rst $end
+$var wire 6 ^ sec_rtc [5:0] $end
+$var wire 1 7 pin_check $end
+$var wire 6 _ min_rtc [5:0] $end
+$var wire 5 ` hour_rtc [4:0] $end
+$var wire 1 3 alarm_set $end
+$var wire 6 a alarm_sec_in [5:0] $end
+$var wire 6 b alarm_min_in [5:0] $end
+$var wire 5 c alarm_hour_in [4:0] $end
+$var reg 1 P alarm_active $end
+$var reg 5 d alarm_hour [4:0] $end
+$var reg 6 e alarm_min [5:0] $end
+$var reg 6 f alarm_sec [5:0] $end
+$var reg 6 g prev_sec [5:0] $end
+$upscope $end
+$scope module alarm2_relay $end
+$var wire 1 ( clk $end
+$var wire 1 h rst $end
+$var wire 6 i sec_rtc [5:0] $end
+$var wire 6 j min_rtc [5:0] $end
+$var wire 5 k hour_rtc [4:0] $end
+$var wire 1 2 alarm_set $end
+$var wire 6 l alarm_sec_in [5:0] $end
+$var wire 6 m alarm_min_in [5:0] $end
+$var wire 5 n alarm_hour_in [4:0] $end
+$var reg 1 O alarm_active $end
+$var reg 5 o alarm_hour [4:0] $end
+$var reg 6 p alarm_min [5:0] $end
+$var reg 6 q alarm_sec [5:0] $end
+$var reg 6 r prev_sec [5:0] $end
+$upscope $end
+$scope module alarm2_servo $end
+$var wire 1 ( clk $end
+$var wire 1 s rst $end
+$var wire 6 t sec_rtc [5:0] $end
+$var wire 1 7 pin_check $end
+$var wire 6 u min_rtc [5:0] $end
+$var wire 5 v hour_rtc [4:0] $end
+$var wire 1 2 alarm_set $end
+$var wire 6 w alarm_sec_in [5:0] $end
+$var wire 6 x alarm_min_in [5:0] $end
+$var wire 5 y alarm_hour_in [4:0] $end
+$var reg 1 N alarm_active $end
+$var reg 5 z alarm_hour [4:0] $end
+$var reg 6 { alarm_min [5:0] $end
+$var reg 6 | alarm_sec [5:0] $end
+$var reg 6 } prev_sec [5:0] $end
+$upscope $end
+$scope module alarm3_relay $end
+$var wire 1 ( clk $end
+$var wire 1 ~ rst $end
+$var wire 6 !" sec_rtc [5:0] $end
+$var wire 6 "" min_rtc [5:0] $end
+$var wire 5 #" hour_rtc [4:0] $end
+$var wire 1 1 alarm_set $end
+$var wire 6 $" alarm_sec_in [5:0] $end
+$var wire 6 %" alarm_min_in [5:0] $end
+$var wire 5 &" alarm_hour_in [4:0] $end
+$var reg 1 M alarm_active $end
+$var reg 5 '" alarm_hour [4:0] $end
+$var reg 6 (" alarm_min [5:0] $end
+$var reg 6 )" alarm_sec [5:0] $end
+$var reg 6 *" prev_sec [5:0] $end
+$upscope $end
+$scope module alarm3_servo $end
+$var wire 1 ( clk $end
+$var wire 1 +" rst $end
+$var wire 6 ," sec_rtc [5:0] $end
+$var wire 1 7 pin_check $end
+$var wire 6 -" min_rtc [5:0] $end
+$var wire 5 ." hour_rtc [4:0] $end
+$var wire 1 1 alarm_set $end
+$var wire 6 /" alarm_sec_in [5:0] $end
+$var wire 6 0" alarm_min_in [5:0] $end
+$var wire 5 1" alarm_hour_in [4:0] $end
+$var reg 1 L alarm_active $end
+$var reg 5 2" alarm_hour [4:0] $end
+$var reg 6 3" alarm_min [5:0] $end
+$var reg 6 4" alarm_sec [5:0] $end
+$var reg 6 5" prev_sec [5:0] $end
+$upscope $end
+$scope module alarm_parser_inst $end
+$var wire 1 ( clk $end
+$var wire 1 6" rst $end
+$var wire 1 @ data_valid $end
+$var wire 8 7" data [7:0] $end
+$var reg 8 8" hh [7:0] $end
+$var reg 5 9" hour1 [4:0] $end
+$var reg 5 :" hour2 [4:0] $end
+$var reg 5 ;" hour3 [4:0] $end
+$var reg 6 <" min1 [5:0] $end
+$var reg 6 =" min2 [5:0] $end
+$var reg 6 >" min3 [5:0] $end
+$var reg 8 ?" mm [7:0] $end
+$var reg 6 @" sec1 [5:0] $end
+$var reg 6 A" sec2 [5:0] $end
+$var reg 6 B" sec3 [5:0] $end
+$var reg 1 3 set1 $end
+$var reg 1 2 set2 $end
+$var reg 1 1 set3 $end
+$var reg 8 C" ss [7:0] $end
+$var reg 4 D" state [3:0] $end
+$var reg 2 E" which [1:0] $end
+$scope function digit $end
+$var reg 8 F" c [7:0] $end
+$upscope $end
+$upscope $end
+$scope module debounce_bowl $end
+$var wire 1 ( clk $end
+$var wire 1 6 btn $end
+$var reg 1 G" btn_sync $end
+$var reg 1 7 clean $end
+$var reg 16 H" count [15:0] $end
+$upscope $end
+$scope module debounce_storage $end
+$var wire 1 ( clk $end
+$var wire 1 4 btn $end
+$var reg 1 I" btn_sync $end
+$var reg 1 5 clean $end
+$var reg 19 J" count [18:0] $end
+$upscope $end
+$scope module lcd $end
+$var wire 1 ( clk $end
+$var wire 1 & enable $end
+$var wire 4 K" in1 [3:0] $end
+$var wire 4 L" in2 [3:0] $end
+$var wire 1 M" ready_i $end
+$var wire 1 , reset $end
+$var reg 1 N" clk_16ms $end
+$var reg 20 O" clk_counter [19:0] $end
+$var reg 3 P" command_counter [2:0] $end
+$var reg 8 Q" data [7:0] $end
+$var reg 5 R" data_counter [4:0] $end
+$var reg 2 S" dyn_state [1:0] $end
+$var reg 3 T" fsm_state [2:0] $end
+$var reg 3 U" next_state [2:0] $end
+$var reg 1 $ rs $end
+$var reg 1 # rw $end
+$var reg 3 V" text_index [2:0] $end
+$upscope $end
+$scope module parser_inst $end
+$var wire 1 ( clk $end
+$var wire 1 W" rst $end
+$var wire 1 @ data_valid $end
+$var wire 8 X" data [7:0] $end
+$var reg 8 Y" hh [7:0] $end
+$var reg 5 Z" hour [4:0] $end
+$var reg 6 [" min [5:0] $end
+$var reg 8 \" mm [7:0] $end
+$var reg 6 ]" sec [5:0] $end
+$var reg 8 ^" ss [7:0] $end
+$var reg 4 _" state [3:0] $end
+$var reg 1 0 synced $end
+$scope function digit $end
+$var reg 8 `" c [7:0] $end
+$upscope $end
+$upscope $end
+$scope module relay_inst $end
+$var wire 1 ( clk $end
+$var wire 1 a" rst $end
+$var wire 1 . trigger $end
+$var wire 1 b" trigger_edge $end
+$var reg 1 c" active $end
+$var reg 32 d" counter [31:0] $end
+$var reg 1 e" prev_trigger $end
+$var reg 1 % relay_out $end
+$upscope $end
+$scope module rtc_inst $end
+$var wire 1 ( clk $end
+$var wire 5 f" hour_in [4:0] $end
+$var wire 6 g" min_in [5:0] $end
+$var wire 1 h" rst $end
+$var wire 6 i" sec_in [5:0] $end
+$var wire 1 0 synced $end
+$var wire 1 j" synced_edge $end
+$var reg 5 k" hour [4:0] $end
+$var reg 6 l" min [5:0] $end
+$var reg 6 m" sec [5:0] $end
+$var reg 1 n" synced_d $end
+$var reg 32 o" tick_cnt [31:0] $end
+$upscope $end
+$scope module sensor_bowl_inst $end
+$var wire 1 6 sensor_activo $end
+$var wire 1 * sensor_pin $end
+$upscope $end
+$scope module sensor_storage_inst $end
+$var wire 1 4 sensor_activo $end
+$var wire 1 + sensor_pin $end
+$upscope $end
+$scope module servo_inst $end
+$var wire 1 ( clk $end
+$var wire 1 / switch $end
+$var wire 1 " servo $end
+$var reg 20 p" counter [19:0] $end
+$var reg 20 q" position [19:0] $end
+$upscope $end
+$scope module uart_rx_inst $end
+$var wire 1 ( clk $end
+$var wire 1 r" rst $end
+$var wire 1 - rx $end
+$var reg 4 s" bit_idx [3:0] $end
+$var reg 16 t" clk_cnt [15:0] $end
+$var reg 8 u" data [7:0] $end
+$var reg 1 @ data_valid $end
+$var reg 4 v" sample_cnt [3:0] $end
+$var reg 1 w" sample_tick $end
+$var reg 8 x" shreg [7:0] $end
+$var reg 3 y" state [2:0] $end
+$upscope $end
+$scope module ultra_inst $end
+$var wire 1 ( clk $end
+$var wire 1 ) echo_i $end
+$var wire 1 z" ready_i $end
+$var wire 1 , rst $end
+$var wire 1 ! trigger_o $end
+$var wire 1 {" trig_done $end
+$var reg 32 |" echo_counter [31:0] $end
+$var reg 32 }" echo_counter_int [31:0] $end
+$var reg 1 ~" echo_meta $end
+$var reg 1 !# echo_sync $end
+$var reg 2 "# next_state [1:0] $end
+$var reg 1 ## ready_meta $end
+$var reg 1 $# ready_sync $end
+$var reg 2 %# state [1:0] $end
+$var reg 9 &# trig_counter [8:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 &#
+b0 %#
+0$#
+0##
+b0 "#
+0!#
+0~"
+b0 }"
+b0 |"
+0{"
+1z"
+b0 y"
+b0 x"
+xw"
+b0 v"
+bx u"
+b0 t"
+b0 s"
+1r"
+b10010010011111000 q"
+b0 p"
+bx o"
+xn"
+bx m"
+bx l"
+bx k"
+xj"
+bx i"
+1h"
+bx g"
+bx f"
+0e"
+b0 d"
+0c"
+xb"
+1a"
+bx `"
+b0 _"
+bx ^"
+bx ]"
+bx \"
+bx ["
+bx Z"
+bx Y"
+bx X"
+1W"
+bx V"
+b1 U"
+b0 T"
+b0 S"
+b0 R"
+b0 Q"
+b0 P"
+b0 O"
+0N"
+1M"
+b0 L"
+b1 K"
+b0 J"
+0I"
+b0 H"
+0G"
+bx F"
+bx E"
+b0 D"
+bx C"
+bx B"
+bx A"
+bx @"
+bx ?"
+bx >"
+bx ="
+bx <"
+bx ;"
+bx :"
+bx 9"
+bx 8"
+bx 7"
+16"
+bx 5"
+bx 4"
+bx 3"
+bx 2"
+bx 1"
+bx 0"
+bx /"
+bx ."
+bx -"
+bx ,"
+1+"
+bx *"
+bx )"
+bx ("
+bx '"
+bx &"
+bx %"
+bx $"
+bx #"
+bx ""
+bx !"
+1~
+bx }
+bx |
+bx {
+bx z
+bx y
+bx x
+bx w
+bx v
+bx u
+bx t
+1s
+bx r
+bx q
+bx p
+bx o
+bx n
+bx m
+bx l
+bx k
+bx j
+bx i
+1h
+bx g
+bx f
+bx e
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+1]
+bx \
+bx [
+bx Z
+bx Y
+bx X
+bx W
+bx V
+bx U
+bx T
+bx S
+1R
+xQ
+xP
+xO
+xN
+xM
+xL
+bx K
+bx J
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+bx B
+b0 A
+x@
+b0 ?
+bx >
+bx =
+bx <
+bx ;
+1:
+bx 9
+bx 8
+07
+06
+05
+04
+x3
+x2
+x1
+x0
+x/
+x.
+1-
+0,
+1+
+1*
+0)
+0(
+b0 '
+0&
+x%
+0$
+0#
+1"
+0!
+$end
+#10000
+0b"
+0/
+0.
+0j"
+0w"
+0@
+b0 ^"
+b0 \"
+b0 Y"
+00
+b0 o"
+b0 8
+b0 S
+b0 ^
+b0 i
+b0 t
+b0 !"
+b0 ,"
+b0 m"
+b0 ;
+b0 T
+b0 _
+b0 j
+b0 u
+b0 ""
+b0 -"
+b0 l"
+b0 =
+b0 U
+b0 `
+b0 k
+b0 v
+b0 #"
+b0 ."
+b0 k"
+01
+02
+03
+b0 C"
+b0 ?"
+b0 8"
+b0 E"
+b0 g
+0P
+b0 f
+b0 e
+b0 d
+b0 }
+0N
+b0 |
+b0 {
+b0 z
+b0 5"
+0L
+b0 4"
+b0 3"
+b0 2"
+b11101010011000000 q"
+b1 p"
+b0 \
+0Q
+b0 [
+b0 Z
+b0 Y
+b0 r
+0O
+b0 q
+b0 p
+b0 o
+b0 *"
+0M
+b0 )"
+b0 ("
+b0 '"
+0%
+xe"
+b1 O"
+1(
+#20000
+0(
+#30000
+b10 O"
+0e"
+b10 p"
+0n"
+1(
+#40000
+0(
+#50000
+b1 t"
+b1 o"
+b11 p"
+b11 O"
+1##
+0r"
+0W"
+0h"
+06"
+0]
+0s
+0+"
+0R
+0h
+0~
+0a"
+1(
+1,
+#60000
+0(
+#70000
+b1 "#
+b100 O"
+b100 p"
+b10 o"
+b10 t"
+1$#
+1(
+#80000
+0(
+#90000
+b11 t"
+b11 o"
+b101 p"
+b101 O"
+1!
+b1 %#
+1(
+#100000
+0(
+#110000
+b110 O"
+b110 p"
+b100 o"
+b100 t"
+b1 &#
+1(
+#120000
+0(
+#130000
+b101 t"
+b101 o"
+b111 p"
+b111 O"
+b10 &#
+1(
+#140000
+0(
+#150000
+b1000 O"
+b1000 p"
+b110 o"
+b110 t"
+b11 &#
+1(
+#160000
+0(
+#170000
+b111 t"
+b111 o"
+b1001 p"
+b1001 O"
+b100 &#
+1(
+#180000
+0(
+#190000
+b1010 O"
+b1010 p"
+b1000 o"
+b1000 t"
+b101 &#
+1(
+#200000
+0(
+#210000
+b1001 t"
+b1001 o"
+b1011 p"
+b1011 O"
+b110 &#
+1(
+#220000
+0(
+#230000
+b1100 O"
+b1100 p"
+b1010 o"
+b1010 t"
+b111 &#
+1(
+#240000
+0(
+#250000
+b1011 t"
+b1011 o"
+1G"
+b1101 p"
+b1101 O"
+b1000 &#
+16
+1(
+0*
+#260000
+0(
+#270000
+b1110 O"
+b1110 p"
+b1 H"
+b1100 o"
+b1100 t"
+b1001 &#
+1(
+#280000
+0(
+#290000
+b1101 t"
+b1101 o"
+b10 H"
+b1111 p"
+b1111 O"
+b1010 &#
+1(
+#300000
+0(
+#310000
+b10000 O"
+b10000 p"
+b11 H"
+b1110 o"
+b1110 t"
+b1011 &#
+1(
+#320000
+0(
+#330000
+b1111 t"
+b1111 o"
+b100 H"
+b10001 p"
+b10001 O"
+b1100 &#
+1(
+#340000
+0(
+#350000
+b10010 O"
+b10010 p"
+b101 H"
+b10000 o"
+b10000 t"
+b1101 &#
+1(
+#360000
+0(
+#370000
+b10001 t"
+b10001 o"
+b110 H"
+b10011 p"
+b10011 O"
+b1110 &#
+1(
+#380000
+0(
+#390000
+b10100 O"
+b10100 p"
+b111 H"
+b10010 o"
+b10010 t"
+b1111 &#
+1(
+#400000
+0(
+#410000
+b10011 t"
+b10011 o"
+b1000 H"
+b10101 p"
+b10101 O"
+b10000 &#
+1(
+#420000
+0(
+#430000
+b10110 O"
+b10110 p"
+b1001 H"
+b10100 o"
+b10100 t"
+b10001 &#
+1(
+#440000
+0(
+#450000
+b10101 t"
+b10101 o"
+b1010 H"
+b10111 p"
+1I"
+b10111 O"
+b10010 &#
+14
+1(
+0+
+#460000
+0(
+#470000
+b11000 O"
+b1 J"
+b11000 p"
+b1011 H"
+b10110 o"
+b10110 t"
+b10011 &#
+1(
+#480000
+0(
+#490000
+b10111 t"
+b10111 o"
+b1100 H"
+b11001 p"
+b10 J"
+b11001 O"
+b10100 &#
+1(
+#500000
+0(
+#510000
+b11010 O"
+b11 J"
+b11010 p"
+b1101 H"
+b11000 o"
+b11000 t"
+b10101 &#
+1(
+#520000
+0(
+#530000
+b11001 t"
+b11001 o"
+b1110 H"
+b11011 p"
+b100 J"
+b11011 O"
+b10110 &#
+1(
+#540000
+0(
+#550000
+b11100 O"
+b101 J"
+b11100 p"
+b1111 H"
+b11010 o"
+b11010 t"
+b10111 &#
+1(
+#560000
+0(
+#570000
+1w"
+b0 t"
+b11011 o"
+b10000 H"
+b11101 p"
+b110 J"
+b11101 O"
+b11000 &#
+1(
+#580000
+0(
+#590000
+b11110 O"
+b111 J"
+b11110 p"
+b10001 H"
+b11100 o"
+0w"
+b1 t"
+b11001 &#
+1(
+#600000
+0(
+#610000
+b10 t"
+b11101 o"
+b10010 H"
+b11111 p"
+b1000 J"
+b11111 O"
+b11010 &#
+1(
+#620000
+0(
+#630000
+b100000 O"
+b1001 J"
+b100000 p"
+b10011 H"
+b11110 o"
+b11 t"
+b11011 &#
+1(
+#640000
+0(
+#650000
+b100 t"
+b11111 o"
+b10100 H"
+b100001 p"
+b1010 J"
+b100001 O"
+b11100 &#
+1(
+#660000
+0(
+#670000
+b100010 O"
+b1011 J"
+b100010 p"
+b10101 H"
+b100000 o"
+b101 t"
+b11101 &#
+1(
+#680000
+0(
+#690000
+b110 t"
+b100001 o"
+b10110 H"
+b100011 p"
+b1100 J"
+b100011 O"
+b11110 &#
+1(
+#700000
+0(
+#710000
+b100100 O"
+b1101 J"
+b100100 p"
+b10111 H"
+b100010 o"
+b111 t"
+b11111 &#
+1(
+#720000
+0(
+#730000
+b1000 t"
+b100011 o"
+b11000 H"
+b100101 p"
+b1110 J"
+b100101 O"
+b100000 &#
+1(
+#740000
+0(
+#750000
+b100110 O"
+b1111 J"
+b100110 p"
+b11001 H"
+b100100 o"
+b1001 t"
+b100001 &#
+1(
+#760000
+0(
+#770000
+b1010 t"
+b100101 o"
+b11010 H"
+b100111 p"
+b10000 J"
+b100111 O"
+b100010 &#
+1(
+#780000
+0(
+#790000
+b101000 O"
+b10001 J"
+b101000 p"
+b11011 H"
+b100110 o"
+b1011 t"
+b100011 &#
+1(
+#800000
+0(
+#810000
+b1100 t"
+b100111 o"
+b11100 H"
+b101001 p"
+b10010 J"
+b101001 O"
+b100100 &#
+1(
+#820000
+0(
+#830000
+b101010 O"
+b10011 J"
+b101010 p"
+b11101 H"
+b101000 o"
+b1101 t"
+b100101 &#
+1(
+#840000
+0(
+#850000
+b1110 t"
+b101001 o"
+b11110 H"
+b101011 p"
+b10100 J"
+b101011 O"
+b100110 &#
+1(
+#860000
+0(
+#870000
+b101100 O"
+b10101 J"
+b101100 p"
+b11111 H"
+b101010 o"
+b1111 t"
+b100111 &#
+1(
+#880000
+0(
+#890000
+b10000 t"
+b101011 o"
+b100000 H"
+b101101 p"
+b10110 J"
+b101101 O"
+b101000 &#
+1(
+#900000
+0(
+#910000
+b101110 O"
+b10111 J"
+b101110 p"
+b100001 H"
+b101100 o"
+b10001 t"
+b101001 &#
+1(
+#920000
+0(
+#930000
+b10010 t"
+b101101 o"
+b100010 H"
+b101111 p"
+b11000 J"
+b101111 O"
+b101010 &#
+1(
+#940000
+0(
+#950000
+b110000 O"
+b11001 J"
+b110000 p"
+b100011 H"
+b101110 o"
+b10011 t"
+b101011 &#
+1(

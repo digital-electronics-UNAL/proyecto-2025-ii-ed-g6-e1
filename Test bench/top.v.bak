@@ -1,0 +1,207 @@
+module top (
+    input  wire clk,           // reloj 50 MHz
+    input  wire rst,
+    input  wire rx,
+    input  wire sensor_pin,    // Salida del TCRT5000
+
+    output wire servo_out,     // PWM al servo
+    output wire relay_out,     // Salida al transistor del relé
+
+    output wire rs,
+    output wire rw,
+    output wire enable,
+    output wire [7:0] data_o
+);
+
+    // =========================
+    // UART RECEPCIÓN
+    // =========================
+    wire        data_valid;
+    wire [7:0]  data;
+
+    uart_rx #(
+        .CLK_FREQ(50000000),
+        .BAUD(115200)
+    ) uart_rx_inst (
+        .clk(clk),
+        .rst(rst),
+        .rx(rx),
+        .data_valid(data_valid),
+        .data(data)
+    );
+
+    // =========================
+    // PARSER DE HORA ACTUAL T:HH:MM:SS
+    // =========================
+    wire        synced;
+    wire [4:0]  hour_p;
+    wire [5:0]  min_p;
+    wire [5:0]  sec_p;
+
+    time_parser parser_inst (
+        .clk(clk),
+        .rst(rst),
+        .data_valid(data_valid),
+        .data(data),
+        .hour(hour_p),
+        .min(min_p),
+        .sec(sec_p),
+        .synced(synced)
+    );
+
+    // =========================
+    // RTC CONTADOR
+    // =========================
+    wire [4:0] hour_rtc;
+    wire [5:0] min_rtc;
+    wire [5:0] sec_rtc;
+
+    rtc_counter #(
+        .CLK_FREQ(50000000)
+    ) rtc_inst (
+        .clk(clk),
+        .rst(rst),
+        .synced(synced),
+        .hour_in(hour_p),
+        .min_in(min_p),
+        .sec_in(sec_p),
+        .hour(hour_rtc),
+        .min(min_rtc),
+        .sec(sec_rtc)
+    );
+
+    // =========================
+    // LCD DISPLAY HH:MM:SS
+    // =========================
+    lcd_time_display lcd_inst (
+        .clk(clk),
+        .rst(rst),
+        .hour(hour_rtc),
+        .min(min_rtc),
+        .sec(sec_rtc),
+        .rs(rs),
+        .rw(rw),
+        .en(enable),
+        .data(data_o)
+    );
+
+    // =========================
+    // PARSER DE ALARMAS H1, H2, H3
+    // =========================
+    wire [4:0] alarm_hour1, alarm_hour2, alarm_hour3;
+    wire [5:0] alarm_min1,  alarm_min2,  alarm_min3;
+    wire [5:0] alarm_sec1,  alarm_sec2,  alarm_sec3;
+    wire       set1, set2, set3;
+
+    multi_alarm_parser alarm_parser_inst (
+        .clk(clk),
+        .rst(rst),
+        .data_valid(data_valid),
+        .data(data),
+        .hour1(alarm_hour1), .min1(alarm_min1), .sec1(alarm_sec1), .set1(set1),
+        .hour2(alarm_hour2), .min2(alarm_min2), .sec2(alarm_sec2), .set2(set2),
+        .hour3(alarm_hour3), .min3(alarm_min3), .sec3(alarm_sec3), .set3(set3)
+    );
+
+    // =========================
+    // SENSOR INFRARROJO + ANTIRREBOTE
+    // =========================
+    wire sensor_activo_raw;
+    wire sensor_activo_filtrado;
+
+    sensor_tcrt5000 sensor_inst (
+        .sensor_pin(sensor_pin),
+        .sensor_activo(sensor_activo_raw)
+    );
+
+    antirrebote #(.COUNT(50000)) debounce_inst (
+        .clk(clk),
+        .btn(sensor_activo_raw),
+        .clean(sensor_activo_filtrado)
+    );
+
+    // =========================
+    // ALARMAS (CONDICIONADAS AL SENSOR)
+    // =========================
+    wire alarm_active1, alarm_active2, alarm_active3;
+
+    alarm_trigger_cond alarm1 (
+        .clk(clk),
+        .rst(rst),
+        .hour_rtc(hour_rtc),
+        .min_rtc(min_rtc),
+        .sec_rtc(sec_rtc),
+        .alarm_set(set1),
+        .alarm_hour_in(alarm_hour1),
+        .alarm_min_in(alarm_min1),
+        .alarm_sec_in(alarm_sec1),
+        .pin_check(sensor_activo_filtrado),
+        .alarm_active(alarm_active1)
+    );
+
+    alarm_trigger_cond alarm2 (
+        .clk(clk),
+        .rst(rst),
+        .hour_rtc(hour_rtc),
+        .min_rtc(min_rtc),
+        .sec_rtc(sec_rtc),
+        .alarm_set(set2),
+        .alarm_hour_in(alarm_hour2),
+        .alarm_min_in(alarm_min2),
+        .alarm_sec_in(alarm_sec2),
+        .pin_check(sensor_activo_filtrado),
+        .alarm_active(alarm_active2)
+    );
+
+    alarm_trigger_cond alarm3 (
+        .clk(clk),
+        .rst(rst),
+        .hour_rtc(hour_rtc),
+        .min_rtc(min_rtc),
+        .sec_rtc(sec_rtc),
+        .alarm_set(set3),
+        .alarm_hour_in(alarm_hour3),
+        .alarm_min_in(alarm_min3),
+        .alarm_sec_in(alarm_sec3),
+        .pin_check(sensor_activo_filtrado),
+        .alarm_active(alarm_active3)
+    );
+
+    // =========================
+    // COMBINACIÓN DE ALARMAS
+    // =========================
+    wire servo_control = alarm_active1 | alarm_active2 | alarm_active3;
+
+    // =========================
+    // DETECTOR DE FLANCO (ACTIVA RELÉ UNA VEZ)
+    // =========================
+    reg prev_servo_control = 0;
+    always @(posedge clk) begin
+        prev_servo_control <= servo_control;
+    end
+
+    wire relay_trigger_edge = servo_control & ~prev_servo_control;
+
+    // =========================
+    // SERVO (CONTROL DE COMPUERTA)
+    // =========================
+    servo_n_pos servo_inst (
+        .clk(clk),
+        .switch(servo_control),
+        .servo(servo_out)
+    );
+
+    // =========================
+    // RELÉ (ACTIVO POR 5 SEGUNDOS)
+    // =========================
+    relay_timer #(
+        .CLK_FREQ(50000000),
+        .ACTIVE_TIME_SEC(5)
+    ) relay_inst (
+        .clk(clk),
+        .rst(rst),
+        .trigger(relay_trigger_edge),
+        .relay_out(relay_out)
+    );
+
+endmodule
