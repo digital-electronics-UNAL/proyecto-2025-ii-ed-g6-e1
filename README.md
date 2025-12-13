@@ -9,7 +9,7 @@
 
 # Nombre del proyecto
 
-##### FEED-LINK
+# FEED-LINK
 
 # Documentación
 ## Descripción de la arquitectura
